@@ -25,7 +25,7 @@ The admin panel lets you manage products, categories, and users.
 - JavaScript / jQuery
 
 ## Demo Video
-[▶ Watch Demo](https://www.loom.com/share/https://www.loom.com/share/eae7caf84bb54972af3c82064ae78fea?sid=0633da4b-a4aa-4b82-86b9-fe55ff85330f)
+[▶ Watch Demo](https://www.loom.com/share/eae7caf84bb54972af3c82064ae78fea?sid=6fee5af9-8dda-4362-831d-5d738559ea57)
 
 
 
