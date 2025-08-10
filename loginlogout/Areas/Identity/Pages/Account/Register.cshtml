@@ -1,0 +1,76 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = null; // Full-page layout
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/template/css/style.css" asp-append-version="true" />
+</head>
+<body style="overflow-y:hidden;">
+    <section class="ftco-section" style="position:relative;bottom:40px; overflow-y:hidden;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="icon d-flex align-items-center justify-content-center"
+                             style="background-color: #5c6bc0; width: 60px; height: 60px; border-radius: 50%; margin: 0 auto;">
+                            <span class="fa fa-user-plus" style="color: white; font-size: 24px;"></span>
+                        </div>
+
+                        <h3 class="text-center mb-4" style="color: #5c6bc0;">Register Here</h3>
+
+                        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="login-form">
+                            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                            <div class="form-group">
+                                <input asp-for="Input.FullName" class="form-control rounded-left" placeholder="FullName" />
+                                <span asp-validation-for="Input.FullName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Input.Email" class="form-control rounded-left" placeholder="Email" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input asp-for="Input.Password" class="form-control rounded-left" placeholder="Password" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input asp-for="Input.ConfirmPassword" class="form-control rounded-left" placeholder="Confirm Password" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 40px;">
+                                <button type="submit" id="registerSubmit" class="btn btn-primary rounded submit p-3 px-5">Register</button>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-3">
+                            <p style="position:relative; bottom:25px; font-weight:bold; color: #5c6bc0;">
+                                <a asp-page="./Login" style="color: #5c6bc0; text-decoration: none;">Already have an account? Login</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/template/js/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/template/js/popper.js" asp-append-version="true"></script>
+    <script src="~/template/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/template/js/main.js" asp-append-version="true"></script>
+
+    <!-- Validation Scripts -->
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>

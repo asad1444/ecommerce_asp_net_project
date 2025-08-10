@@ -1,0 +1,86 @@
+﻿@model List<loginlogout.Models.Order>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+
+
+<div class="container-fluid mt-4">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card-summary">
+                <h5>Total Users</h5>
+                <h3>@ViewBag.TotalUsers</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-summary">
+                <h5>Total Orders</h5>
+                <h3>@ViewBag.TotalOrders</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-summary">
+                <h5>Revenue</h5>
+                <h3>@ViewBag.TotalRevenue</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-5">
+
+        <div class="card mt-5">
+            <div class="card-body">
+                <h5 class="card-title">Recent Orders</h5>
+
+                <!-- Scrollable Table Container -->
+                <div style="overflow-x: auto;">
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>FirstName</th>
+                                <th>LastName</th>
+                                <th>City</th>
+                                <th>Status</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td class="align-middle">@order.FirstName</td>
+                                    <td class="align-middle">@order.LastName</td>
+                                    <td class="align-middle">@order.City</td>
+                                    <td class="align-middle">
+                                        <button class="btn btn-info text-white">
+                                            @order.Status
+                                        </button>
+                                    </td>
+                                    <td class="align-middle">@order.Address</td>
+                                    <td class="align-middle">@order.Email</td>
+                                    <td class="align-middle">@order.Name</td>
+                                    <td class="align-middle">@order.Quantity</td>
+                                    <td class="align-middle">@order.Total</td>
+                                    <td class="align-middle">
+                                        <a asp-action="EditOrder" asp-route-id="@order.OrderId"><i class="fa-solid fa-pen-to-square text-primary"></i> </a>
+                                        <a asp-action="DeleteOrder" asp-route-id="@order.OrderId">
+                                            <i class="bi bi-x-circle text-danger"></i>  <!-- Circle Cancel icon -->
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    

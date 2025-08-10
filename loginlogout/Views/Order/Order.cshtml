@@ -1,0 +1,647 @@
+﻿@model loginlogout.Models.Order
+@{
+	var cartItems = ViewBag.CartItems as List<loginlogout.Models.CartItem>;
+
+
+}
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Product</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="~/templatewebsite/images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/vendor/slick/slick.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/vendor/MagnificPopup/magnific-popup.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/css/util.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<link rel="stylesheet" type="text/css" href="~/templatewebsite/css/main.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+
+	<!-- Icon Font Stylesheet -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+	<!-- Libraries Stylesheet -->
+	<link href="~/Admintemplate/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+	<link href="~/Admintemplate/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+	<!-- Customized Bootstrap Stylesheet -->
+	<link href="~/Admintemplate/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Template Stylesheet -->
+	<link href="~/Admintemplate/css/style.css" rel="stylesheet">
+	<!--===============================================================================================-->
+
+	<style>
+		.my-order-button{
+			background-color: rgb(120, 133, 237);
+			color:white;
+			border-radius:50px;
+			border: 1px solid rgb(120, 133, 237);
+
+		}
+		.my-order-button:hover{
+			background-color:black;
+			color:white;
+		}
+		.free{
+			align-items:center;
+			text-align:center;
+			font-weight:bold;
+			justify-content:center;
+			display:flex;
+			position:relative;
+			top:9px;
+			left:50px;
+		}
+	</style>
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header class="header-v4">
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar -->
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+						<p class="free">Free shipping for standard order over $100</p>
+					</div>
+
+					
+				</div>
+			</div>
+
+			<div class="wrap-menu-desktop how-shadow1">
+				<nav class="limiter-menu-desktop container">
+
+					<!-- Logo desktop -->
+					<a href="#" class="logo">
+						<img src="~/templatewebsite/images/icons/logo-01.png" alt="IMG-LOGO">
+					</a>
+
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li>
+								<a asp-controller="User" asp-action="Profile">Home</a>
+
+							</li>
+
+							<li class="active-menu">
+								<a asp-controller="Shop" asp-action="Shop">Shop</a>
+							</li>
+
+							<li>
+								<a asp-controller="ShowCartItem" asp-action="ShowCartItem">Features</a>
+							</li>
+
+							<li>
+								<a asp-controller="Pages" asp-action="WebAbout">About</a>
+							</li>
+
+							<li>
+								<a asp-controller="Contact" asp-action="Contact">Contact</a>
+
+							</li>
+						</ul>
+					</div>
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</div>
+
+						
+					</div>
+				</nav>
+			</div>
+		</div>
+
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->
+			<div class="logo-mobile">
+				<a href="index.html"><img src="~/templatewebsite/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+			</div>
+
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					<i class="zmdi zmdi-search"></i>
+				</div>
+
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</div>
+
+			
+			</div>
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+		</div>
+
+
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			<ul class="topbar-mobile">
+				<li>
+					<div>
+						<p class="free">Free shipping for standard order over $100</p>
+					</div>
+				</li>
+
+				
+			</ul>
+
+			<ul class="main-menu-m">
+				<li>
+					<a asp-controller="User" asp-action="Profile">Home</a>
+
+				</li>
+
+				<li class="active-menu">
+					<a asp-controller="Shop" asp-action="Shop">Shop</a>
+				</li>
+
+				<li>
+					<a asp-controller="ShowCartItem" asp-action="ShowCartItem">Features</a>
+				</li>
+
+				<li>
+					<a asp-controller="Pages" asp-action="WebAbout">About</a>
+				</li>
+
+				<li>
+					<a asp-controller="Contact" asp-action="Contact">Contact</a>
+
+				</li>
+			</ul>
+		</div>
+
+		<!-- Modal Search -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+			<div class="container-search-header">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+					<img src="images/icons/icon-close2.png" alt="CLOSE">
+				</button>
+
+				<form class="wrap-search-header flex-w p-l-15">
+					<button class="flex-c-m trans-04">
+						<i class="zmdi zmdi-search"></i>
+					</button>
+					<input class="plh3" type="text" name="search" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</header>
+
+	<!-- Checkout Page Start -->
+	<div class="container-fluid py-5">
+		<div class="container py-5">
+			<h1 class="mb-4">Billing details</h1>
+			<form asp-action="Order" method="post">
+				<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+				<div class="row g-5">
+					<div class="col-md-12 col-lg-6 col-xl-7">
+						<div class="row">
+							<div class="col-md-12 col-lg-6">
+								<div class="form-item w-100">
+									<label class="form-label my-3" asp-for="FirstName">First Name<sup>*</sup></label>
+									<input asp-for="FirstName" class="form-control">
+									<span asp-validation-for="FirstName" class="text-danger" ></span>
+								</div>
+							</div>
+							<div class="col-md-12 col-lg-6">
+								<div class="form-item w-100">
+									<label class="form-label my-3" asp-for="LastName">Last Name<sup>*</sup></label>
+									<input asp-for="LastName" class="form-control" />
+									<span asp-validation-for="LastName" class="text-danger"></span>
+
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-item">
+							<label class="form-label my-3" asp-for="Address">Address <sup>*</sup></label>
+							<input asp-for="Address" class="form-control" placeholder="House Number Street Name">
+							<span asp-validation-for="Address" class="text-danger"></span>
+
+						</div>
+						<div class="form-item">
+							<label class="form-label my-3" asp-for="City">Town/City<sup>*</sup></label>
+							<input asp-for="City" class="form-control">
+							<span asp-validation-for="City" class="text-danger"></span>
+
+						</div>
+						<div class="form-item">
+							<label class="form-label my-3" asp-for="Country">Country<sup>*</sup></label>
+							<input asp-for="Country" class="form-control">
+							<span asp-validation-for="Country" class="text-danger"></span>
+
+						</div>
+						<div class="form-item">
+							<label class="form-label my-3" asp-for="PostalCode">Postcode/Zip<sup>*</sup></label>
+							<input asp-for="PostalCode" class="form-control">
+							<span asp-validation-for="PostalCode" class="text-danger"></span>
+
+						</div>
+						<div class="form-item">
+							<label class="form-label my-3" asp-for="Phone">Mobile<sup>*</sup></label>
+							<input asp-for="Phone" class="form-control">
+							<span asp-validation-for="Phone" class="text-danger"></span>
+
+						</div>
+						<div class="form-item">
+							<label class="form-label my-3" asp-for="Email">Email Address<sup>*</sup></label>
+							<input asp-for="Email" class="form-control">
+							<span asp-validation-for="Email" class="text-danger"></span>
+
+						</div>
+						
+						<hr>
+						
+						
+					</div>
+					<div class="col-md-12 col-lg-6 col-xl-5">
+
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Products</th>
+										<th scope="col">Name</th>
+										<th scope="col">Price</th>
+										<th scope="col">Quantity</th>
+										<th scope="col">Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var item in cartItems)
+											{
+									<tr>
+										
+										<th scope="row">
+											
+												<div class="d-flex align-items-center mt-2">
+													<img src="~/ProductImages/@item.Product.ProductImage" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
+												</div>
+												</th>
+											
+											<td class="py-5">@item.Product.Name</td>
+											<td class="py-5">@item.Product.Price</td>
+											<td class="py-5">@item.Quantity</td>
+											<td class="py-5">@(item.Quantity * item.Product.Price)</td>
+											
+										</tr>
+										}
+										
+
+
+
+
+									</tbody>
+								</table>
+							</div>
+							
+							
+							<div class="row g-4 text-center align-items-center justify-content-center pt-4">
+							<button type="submit" onclick="placeorder()" class="btn border-secondary py-3 px-4 text-uppercase w-100 my-order-button">
+								Place Order
+							</button>
+						</div>
+						
+					</div>
+						
+					</div>
+        </form>
+    </div>
+</div>
+<!-- Checkout Page End -->
+
+
+	<footer class="bg3 p-t-75 p-b-32">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Categories
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Women
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Men
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Shoes
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Watches
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Help
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Track Order
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Returns
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Shipping
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								FAQs
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						GET IN TOUCH
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+					</p>
+
+					<div class="p-t-27">
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-instagram"></i>
+						</a>
+
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-pinterest-p"></i>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Newsletter
+					</h4>
+
+					<form>
+						<div class="wrap-input1 w-full p-b-4">
+							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+							<div class="focus-input1 trans-04"></div>
+						</div>
+
+						<div class="p-t-18">
+							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+								Subscribe
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="p-t-40">
+				<div class="flex-c-m flex-w p-b-18">
+					<a href="#" class="m-all-1">
+						<img src="~/templatewebsite/images/icons/icon-pay-01.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="~/templatewebsite/images/icons/icon-pay-02.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="~/templatewebsite/images/icons/icon-pay-03.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="~/templatewebsite/images/icons/icon-pay-04.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="~/templatewebsite/images/icons/icon-pay-05.png" alt="ICON-PAY">
+					</a>
+				</div>
+
+				<p class="stext-107 cl6 txt-center">
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+				</p>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+
+	<!-- Modal1 -->
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/bootstrap/js/popper.js"></script>
+	<script src="~/templatewebsite/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+
+			
+		function placeorder() {
+					Swal.fire({
+			title: 'Thank You!',
+			text: 'Thanks for shopping 😊',
+			icon: 'success',
+			timer: 4000, // 2000 milliseconds = 2 seconds
+			showConfirmButton: false, // Hide "Close" button
+			background: '#f0f9ff',
+			color: '#333'
+		});
+		}
+
+	</script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/daterangepicker/moment.min.js"></script>
+	<script src="~/templatewebsite/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/slick/slick.min.js"></script>
+	<script src="~/templatewebsite/js/slick-custom.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/parallax100/parallax100.js"></script>
+	<script>
+		$('.parallax100').parallax100();
+	</script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+				delegate: 'a', // the selector for gallery item
+				type: 'image',
+				gallery: {
+					enabled:true
+				},
+				mainClass: 'mfp-fade'
+			});
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/isotope/isotope.pkgd.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+
+	</script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="~/templatewebsite/js/main.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/Admintemplate/lib/easing/easing.min.js"></script>
+	<script src="~/Admintemplate/lib/waypoints/waypoints.min.js"></script>
+	<script src="~/Admintemplate/lib/lightbox/js/lightbox.min.js"></script>
+	<script src="~/Admintemplate/lib/owlcarousel/owl.carousel.min.js"></script>
+
+	<!-- Template Javascript -->
+	<script src="~/Admintemplate/js/main.js"></script>
+
+</body>
+</html>

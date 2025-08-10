@@ -1,0 +1,90 @@
+﻿@model IEnumerable<loginlogout.Models.Contact>
+
+@{
+    ViewData["Title"] = "ShowContact";
+    Layout = "~/Views/Shared/_Layoutcrud.cshtml";
+}
+
+<style>
+    body {
+        background-color: #e3f2fd;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .contact-table-container {
+        width: 100%;
+        margin: auto;
+        background-color: #f5faff;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(63, 81, 181, 0.3);
+        padding: 30px;
+    }
+
+    .contact-table h2 {
+        text-align: center;
+        color: #3f51b5;
+        margin-bottom: 25px;
+    }
+
+    .table thead {
+        background-color: #3f51b5;
+        color: white;
+    }
+
+    .table tbody tr:hover {
+        background-color: #e8f0ff;
+    }
+
+    .btn-indigo {
+        background-color: #3f51b5;
+        color: white;
+    }
+
+        .btn-indigo:hover {
+            background-color: #303f9f;
+        }
+
+    .btn-danger {
+        background-color: #e53935;
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background-color: #c62828;
+        }
+</style>
+
+<div class="contact-table-container">
+    <div class="contact-table">
+        <h2>Show Contacts</h2>
+
+       
+
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle text-center">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Submitted At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Email</td>
+                            <td>@item.Message</td>
+                            <td>@item.SubmittedAt</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.ContactId" class="btn btn-sm btn-indigo">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.ContactId" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

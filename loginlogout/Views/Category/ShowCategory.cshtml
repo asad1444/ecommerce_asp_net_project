@@ -1,0 +1,103 @@
+﻿@model IEnumerable<loginlogout.Models.Category>
+
+@{
+    ViewData["Title"] = "ShowCategory";
+    Layout = "~/Views/Shared/_Layoutcrud.cshtml";
+}
+
+<!-- Custom Styling -->
+<style>
+    body {
+        background-color: #e3f2fd;
+        font-family: 'Poppins', sans-serif;
+        
+    }
+
+    .product-table-container {
+        max-width: 1100px;
+        margin: auto;
+        background-color: #f5faff;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(63, 81, 181, 0.3);
+        padding: 30px;
+    }
+
+    .product-table h2 {
+        text-align: center;
+        color: #3f51b5;
+        margin-bottom: 25px;
+    }
+
+    .table {
+        width: 100% !important; /* ✅ Added */
+    }
+
+        .table thead {
+            background-color: #3f51b5;
+            color: white;
+        }
+
+        .table tbody tr:hover {
+            background-color: #e8f0ff;
+        }
+
+        .table img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+    .btn-indigo {
+        background-color: #3f51b5;
+        color: white;
+    }
+
+        .btn-indigo:hover {
+            background-color: #303f9f;
+        }
+
+    .btn-danger {
+        background-color: #e53935;
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background-color: #c62828;
+        }
+</style>
+
+
+<div class="product-table-container w-100">
+    <div class="product-table">
+      <div>
+          <h2>Show Category</h2>
+      </div>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle text-center">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.First().Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().CategoryImage)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>
+                                <img src="~/CategoryImages/@item.CategoryImage" alt="@item.Name" />
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-indigo" asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a>
+                                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
